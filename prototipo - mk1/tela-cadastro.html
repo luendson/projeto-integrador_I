@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos/t-cadastro.css">
+    <script src="cscript.js"></script>
+    <title>Sistema de Votação IFPI</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="imagens/ifpi.png">
+                        <span class="title">SV-IFPI</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="file:///E:/2%20-%202023%20-%20TADS%20-%20IFPI/Projeto%20integrador%20I/prototipo%20-%20mk1/tela-inicial.html">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="file:///E:/2%20-%202023%20-%20TADS%20-%20IFPI/Projeto%20integrador%20I/prototipo%20-%20mk1/tela-usuario.html">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">Usuário</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="file:///E:/2%20-%202023%20-%20TADS%20-%20IFPI/Projeto%20integrador%20I/prototipo%20-%20mk1/tela-votacao.html">
+                        <span class="icon"><ion-icon name="receipt-outline"></ion-icon></ion-icon></span>
+                        <span class="title">Cessão de Votação</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="file:///E:/2%20-%202023%20-%20TADS%20-%20IFPI/Projeto%20integrador%20I/prototipo%20-%20mk1/tela-relatorios.html">
+                        <span class="icon"><ion-icon name="podium-outline"></ion-icon></ion-icon></span>
+                        <span class="title">Relatórios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="file:///E:/2%20-%202023%20-%20TADS%20-%20IFPI/Projeto%20integrador%20I/prototipo%20-%20mk1/tela-cadastro.html">
+                        <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></ion-icon></span>
+                        <span class="title">Cadastros</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="file:///E:/2%20-%202023%20-%20TADS%20-%20IFPI/Projeto%20integrador%20I/prototipo%20-%20mk1/tela-configura%C3%A7oes.html">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Configurações</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- Search -->
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Pesquisar">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <!-- userImg -->
+                <div class="user">
+                    <img src="imagens/hudson2.jpg">
+                </div>
+            </div>
+
+        
+            <div class="graphBox">
+                <div class="box">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="box">
+                    <canvas id="earning"></canvas>
+                </div>
+            </div>
+                
+            
+        </div>    
+    </div>
+
+    <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> 
+    <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="teste.js"></script>
+    
+
+    <script>
+
+        // MenuToggle 
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        // add hovered class in selector list item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+
+        //Graficos
+        const ctx = document.getElementById('myChart');
+        const earning = document.getElementById('earning');
+
+        new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green'],
+                datasets: [{
+                    label: 'Traffic Source',
+                    data: [12, 19, 3, 5],
+                    borderWidth: 1
+            }]
+            },
+            options: {
+            Responsive: true
+            }
+        });
+
+        new Chart(earning, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                Responsive: true
+            }
+        });
+
+    </script>
+</body>
+</html>
